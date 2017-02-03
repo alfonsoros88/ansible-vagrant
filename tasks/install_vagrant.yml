@@ -1,0 +1,12 @@
+---
+- name: Vagrant | Create temporary download folder
+  file:
+    path: /tmp/vagrant
+    mode: 0755
+    state: directory
+
+- name: Vagrant | Download deb package
+  get_url: "url={{ vagrant.deb }} dest={{ vagrant.tmp_dir }} validate_certs=no"
+
+- name: Vagrant | Install
+  apt: "deb={{ vagrant.tmp_dir }}/vagrant_{{ _vagrant_version }}_{{ ansible_architecture }}.deb"

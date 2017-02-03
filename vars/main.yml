@@ -1,0 +1,13 @@
+---
+virtualbox:
+  pkg_name: virtualbox-5.1 
+  repo:
+    - deb http://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib
+  apt_keys:
+    - http://www.virtualbox.org/download/oracle_vbox_2016.asc
+    - http://www.virtualbox.org/download/oracle_vbox.asc
+
+vagrant:
+  version: "{{ _vagrant_version }}"
+  tmp_dir: "/tmp/vagrant/"
+  deb: "http://releases.hashicorp.com/vagrant/{{ _vagrant_version }}/vagrant_{{ _vagrant_version }}_{{ ansible_architecture }}.deb"

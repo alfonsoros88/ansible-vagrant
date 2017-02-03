@@ -1,0 +1,13 @@
+---
+- name: VirtualBox | Add APT keys
+  apt_key: "url='{{ item }}' state=present"
+  with_items: 
+    - "{{ virtualbox.apt_keys }}"
+
+- name: VirtualBox | Add APT repositories
+  apt_repository: "repo='{{ item }} update_cache=yes state=present'"
+  with_items: 
+    - "{{ virtualbox.repo }}"
+
+- name: Install VirtualBox
+  apt: "name='{{ virtualbox.pkg_name }}' state=present"
